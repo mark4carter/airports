@@ -1,5 +1,6 @@
 (ns my-webapp.views
   (:require [my-webapp.db :as db]
+            [my-webapp.rabbit :as rabb]
             [clojure.string :as str]
             [hiccup.page :as hic-p]))
 
@@ -62,7 +63,8 @@
 
 (defn all-locations-page
   []
-  (let [all-locs (db/get-all-locations)]
+  (let [all-locs (db/get-all-locations)
+       jump  (rabb/send-rabbit "info" "aabbcc")]
     (hic-p/html5
      (gen-page-head "All Locations in the db")
      header-links
@@ -70,4 +72,7 @@
      [:table
       [:tr [:th "id"] [:th "x"] [:th "y"]]
       (for [loc all-locs]
-        [:tr [:td (:id loc)] [:td (:x loc)] [:td (:y loc)]])])))
+        [:tr [:td (:id loc)] [:td (:x loc)] [:td (:y loc)]])]
+     [:p "testAgain?"]
+     [:p "test : " jump]
+      )))

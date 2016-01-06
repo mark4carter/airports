@@ -7,7 +7,8 @@
                  [ring/ring-defaults "0.1.5"]
                  [hiccup "1.0.2"]
                  [org.clojure/java.jdbc "0.2.3"]
-                 [com.h2database/h2 "1.3.170"]]
+                 [com.h2database/h2 "1.3.170"]
+                 [com.novemberain/langohr "3.3.0"]]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler my-webapp.handler/app}
   :profiles
